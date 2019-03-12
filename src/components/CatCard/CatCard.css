@@ -1,0 +1,11 @@
+.cat-card {
+  height: 28vw;
+  
+}
+
+@media (max-width: 960px) {
+  .cat-card {
+    height: 34vw; 
+    min-height: 300px;
+  }
+}

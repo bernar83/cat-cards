@@ -1,0 +1,13 @@
+.cat-table__get-cats-button-wrapper {
+  padding: 20px;
+  margin: 20px;
+}
+
+.cat-table__progress-wrapper {
+    padding: 40px;
+    margin: 80px 20px;
+}
+
+.cat-table__cat-card-grid {
+  margin: 8px;
+}
