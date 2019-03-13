@@ -3,7 +3,7 @@ import axios from "axios";
 import CatCard from "../CatCard/CatCard";
 import CatButton from "../CatButton/CatButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import "./CatTable.css";
 
@@ -34,11 +34,17 @@ class CatTable extends Component {
   };
 
   render() {
+    const { checked } = this.props;
+
     return (
       <div className="cat-table__cat-card-grid">
         <Grid container justify="center">
           <Grid item className="cat-table__get-cats-button-wrapper">
-            <CatButton getCats={this.getCats} />
+            {checked ? (
+              <Typography variant="caption">Inifite Scroll!</Typography>
+            ) : (
+              <CatButton getCats={this.getCats} />
+            )}
           </Grid>
         </Grid>
         <Grid container spacing={8}>

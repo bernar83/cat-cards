@@ -1,1 +1,6 @@
-
+@media (max-width: 500px) {
+  .app-bar__switch-wrapper {
+    position: relative;
+    right: 10px;
+  }
+}
