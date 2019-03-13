@@ -1,33 +1,31 @@
 {
   "name": "cat-facts",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "axios": "^0.18.0",
-    "gh-pages": "^2.0.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8",
-    "typeface-roboto": "0.0.54"
-  },
+  "version": "1.0.0",
+  "description": "Display random cat facts",
+  "main": "server.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "proxy": "https://cat-fact.herokuapp.com",
-  "homepage": "https://bernar83.github.io/cat-cards",
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernar83/cat-cards.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "author": "Adrian Bernardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bernar83/cat-cards/issues"
+  },
+  "homepage": "https://github.com/bernar83/cat-cards#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }

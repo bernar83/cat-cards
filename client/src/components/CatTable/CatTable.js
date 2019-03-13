@@ -22,7 +22,7 @@ class CatTable extends Component {
 
   getCats = () => {
     this.setState({ isLoading: true });
-    const url = "/facts/random?animal_type=cat&amount=9";
+    const url = "/cats";
     axios
       .get(url)
       .then(cats => {
