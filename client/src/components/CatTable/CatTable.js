@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CatCard from "../CatCard/CatCard";
 import CatButton from "../CatButton/CatButton";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Grid, Typography } from "@material-ui/core";
 
 import "./CatTable.css";
+import InfiniteCats from "./InfiniteCats/InfiniteCats";
+import CatGrid from "./CatGrid/CatGrid";
 
 class CatTable extends Component {
   constructor(props) {
@@ -33,7 +33,21 @@ class CatTable extends Component {
       });
   };
 
+  getMoreCats = () => {
+    const { cats } = this.state;
+    const url = "/cats";
+    axios
+      .get(url)
+      .then(response => {
+        this.setState({ cats: cats.concat(response.data) });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
+    const { cats, isLoading } = this.state;
     const { checked } = this.props;
 
     return (
@@ -47,28 +61,11 @@ class CatTable extends Component {
             )}
           </Grid>
         </Grid>
-        <Grid container spacing={8}>
-          {this.state.isLoading ? (
-            <Grid container justify="center">
-              <Grid item className="cat-table__progress-wrapper">
-                <CircularProgress size={80} />
-              </Grid>
-            </Grid>
-          ) : (
-            this.state.cats.map(cat => {
-              return (
-                <Grid item xs={12} md={6} lg={4} key={cat._id}>
-                  <CatCard
-                    fact={cat.text}
-                    date={cat.updatedAt}
-                    id={cat._id}
-                    key={cat._id}
-                  />
-                </Grid>
-              );
-            })
-          )}
-        </Grid>
+        {checked ? (
+          <InfiniteCats getMoreCats={this.getMoreCats} cats={cats} />
+        ) : (
+          <CatGrid cats={cats} isLoading={isLoading} />
+        )}
       </div>
     );
   }
