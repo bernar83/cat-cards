@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import CatButton from "../CatButton/CatButton";
 import { Grid, Typography } from "@material-ui/core";
 
@@ -8,47 +7,12 @@ import InfiniteCats from "./InfiniteCats/InfiniteCats";
 import CatGrid from "./CatGrid/CatGrid";
 
 class CatTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cats: [],
-      isLoading: true
-    };
-  }
-
   componentDidMount() {
-    this.getCats();
+    this.props.getCats();
   }
-
-  getCats = () => {
-    this.setState({ isLoading: true });
-    const url = "/cats";
-    axios
-      .get(url)
-      .then(cats => {
-        this.setState({ cats: cats.data, isLoading: false });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  getMoreCats = () => {
-    const { cats } = this.state;
-    const url = "/cats";
-    axios
-      .get(url)
-      .then(response => {
-        this.setState({ cats: cats.concat(response.data) });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 
   render() {
-    const { cats, isLoading } = this.state;
-    const { checked } = this.props;
+    const { checked, cats, isLoading, getCats, getMoreCats } = this.props;
 
     return (
       <div className="cat-table__cat-card-grid">
@@ -57,12 +21,12 @@ class CatTable extends Component {
             {checked ? (
               <Typography variant="caption">Inifite Scroll!</Typography>
             ) : (
-              <CatButton getCats={this.getCats} />
+              <CatButton getCats={getCats} />
             )}
           </Grid>
         </Grid>
         {checked ? (
-          <InfiniteCats getMoreCats={this.getMoreCats} cats={cats} />
+          <InfiniteCats getMoreCats={getMoreCats} cats={cats} />
         ) : (
           <CatGrid cats={cats} isLoading={isLoading} />
         )}
