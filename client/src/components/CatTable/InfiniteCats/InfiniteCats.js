@@ -19,7 +19,7 @@ const InfiniteCats = ({ getMoreCats, cats }) => {
           </Grid>
         </Grid>
       }
-      className="MuiGrid-container-41 MuiGrid-spacing-xs-8-63"
+      className="MuiGrid-container-41 MuiGrid-spacing-xs-8-63 jss41 jss63"
     >
       {cats.map(cat => {
         return (
