@@ -18,6 +18,9 @@ class App extends Component {
 
   handleChange = () => {
     this.setState({ checked: !this.state.checked });
+    if (this.state.checked == true) {
+      this.getCats();
+    }
   };
 
   getCats = () => {
