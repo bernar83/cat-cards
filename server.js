@@ -7,7 +7,7 @@ const app = express();
 app.use("/cats", cats);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use("/cat-cards/", express.static("client/build"));
 
   app.get("*", (req, res) => {
     res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
