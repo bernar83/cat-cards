@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "typeface-roboto";
 import "./App.css";
 import CatTable from "./components/CatTable/CatTable";
+import CatFavorites from "./components/CatFavorites/CatFavorites";
 
 class App extends Component {
   state = {
@@ -83,24 +84,37 @@ class App extends Component {
   };
 
   render() {
-    const { checked, cats, isLoading } = this.state;
-    console.log(this.state.favorites);
-
+    const { checked, cats, isLoading, favorites } = this.state;
     return (
       <Router>
         <div>
-          <AppBar position="static" color="default">
+          <AppBar
+            position="static"
+            color="default"
+            style={{ marginBottom: "10px" }}
+          >
             <Toolbar>
               <Grid container>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                   <Typography variant="h3" color="inherit">
                     Cat Facts
                   </Typography>
+                </Grid>
+                <Grid item xs={1}>
+                  <Link to="/">
+                    <Button>Home</Button>
+                  </Link>
+                </Grid>
+                <Grid item xs={1}>
+                  <Link to="/favorites">
+                    <Button>Favorites</Button>
+                  </Link>
                 </Grid>
               </Grid>
             </Toolbar>
           </AppBar>
           <Route
+            exact
             path="/"
             render={props => (
               <CatTable
@@ -111,6 +125,18 @@ class App extends Component {
                 getCats={this.getCats}
                 getMoreCats={this.getMoreCats}
                 handleChange={this.handleChange}
+                findIfFavorite={this.findIfFavorite}
+                handleFavoriteClick={this.handleFavoriteClick}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/favorites"
+            render={props => (
+              <CatFavorites
+                {...props}
+                favorites={favorites}
                 findIfFavorite={this.findIfFavorite}
                 handleFavoriteClick={this.handleFavoriteClick}
               />
