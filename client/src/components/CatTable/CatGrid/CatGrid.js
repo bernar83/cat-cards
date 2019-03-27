@@ -8,7 +8,7 @@ import "../CatTable.css";
 const CatGrid = ({ cats, isLoading }) => {
   return (
     <Grid container spacing={8}>
-      {isLoading ? (
+      {isLoading && cats.length ? (
         <Grid container justify="center">
           <Grid item className="cat-table__progress-wrapper">
             <CircularProgress size={80} />

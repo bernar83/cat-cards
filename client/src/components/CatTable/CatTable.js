@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CatButton from "../CatButton/CatButton";
-import { Grid, Typography } from "@material-ui/core";
+import { Switch, Grid, Typography } from "@material-ui/core";
 
 import "./CatTable.css";
 import InfiniteCats from "./InfiniteCats/InfiniteCats";
@@ -12,10 +12,22 @@ class CatTable extends Component {
   }
 
   render() {
-    const { checked, cats, isLoading, getCats, getMoreCats } = this.props;
+    const {
+      checked,
+      cats,
+      isLoading,
+      getCats,
+      getMoreCats,
+      handleChange
+    } = this.props;
 
     return (
       <div className="cat-table__cat-card-grid">
+        <Grid container justify="center">
+          <Grid item>
+            <Switch checked={checked} onChange={handleChange} color="primary" />
+          </Grid>
+        </Grid>
         <Grid container justify="center">
           <Grid item className="cat-table__get-cats-button-wrapper">
             {checked ? (
