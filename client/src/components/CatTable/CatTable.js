@@ -18,7 +18,9 @@ class CatTable extends Component {
       isLoading,
       getCats,
       getMoreCats,
-      handleChange
+      handleChange,
+      findIfFavorite,
+      handleFavoriteClick
     } = this.props;
 
     return (
@@ -38,9 +40,19 @@ class CatTable extends Component {
           </Grid>
         </Grid>
         {checked ? (
-          <InfiniteCats getMoreCats={getMoreCats} cats={cats} />
+          <InfiniteCats
+            getMoreCats={getMoreCats}
+            cats={cats}
+            findIfFavorite={findIfFavorite}
+            handleFavoriteClick={handleFavoriteClick}
+          />
         ) : (
-          <CatGrid cats={cats} isLoading={isLoading} />
+          <CatGrid
+            cats={cats}
+            isLoading={isLoading}
+            findIfFavorite={findIfFavorite}
+            handleFavoriteClick={handleFavoriteClick}
+          />
         )}
       </div>
     );

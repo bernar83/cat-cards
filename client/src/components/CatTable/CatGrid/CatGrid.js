@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 
 import "../CatTable.css";
 
-const CatGrid = ({ cats, isLoading }) => {
+const CatGrid = ({ cats, isLoading, findIfFavorite, handleFavoriteClick }) => {
   return (
     <Grid container spacing={8}>
       {isLoading && cats.length ? (
@@ -19,10 +19,10 @@ const CatGrid = ({ cats, isLoading }) => {
           return (
             <Grid item xs={12} md={6} lg={4} key={cat._id}>
               <CatCard
-                fact={cat.text}
-                date={cat.updatedAt}
-                id={cat._id}
+                cat={cat}
                 key={cat._id}
+                findIfFavorite={findIfFavorite}
+                handleFavoriteClick={handleFavoriteClick}
               />
             </Grid>
           );

@@ -51,6 +51,14 @@ class App extends Component {
       });
   };
 
+  handleFavoriteClick = cat => {
+    if (this.findIfFavorite(cat._id)) {
+      this.removeFavoriteFact(cat._id);
+    } else {
+      this.favoriteFact(cat);
+    }
+  };
+
   favoriteFact = cat => {
     const { favorites } = this.state;
     favorites.push(cat);
@@ -58,11 +66,11 @@ class App extends Component {
   };
 
   removeFavoriteFact = catId => {
-    const { cats } = this.state;
-    if (cats.length > 0) {
-      const catFactIndex = cats.map(cat => cat._id).indexOf(catId);
-      cats.splice(catFactIndex);
-      this.setState({ cats: cats });
+    const { favorites } = this.state;
+    if (favorites.length > 0) {
+      const catFactIndex = favorites.map(cat => cat._id).indexOf(catId);
+      favorites.splice(catFactIndex);
+      this.setState({ favorites: favorites });
     }
   };
 
@@ -76,6 +84,7 @@ class App extends Component {
 
   render() {
     const { checked, cats, isLoading } = this.state;
+    console.log(this.state.favorites);
 
     return (
       <Router>
@@ -102,6 +111,8 @@ class App extends Component {
                 getCats={this.getCats}
                 getMoreCats={this.getMoreCats}
                 handleChange={this.handleChange}
+                findIfFavorite={this.findIfFavorite}
+                handleFavoriteClick={this.handleFavoriteClick}
               />
             )}
           />
