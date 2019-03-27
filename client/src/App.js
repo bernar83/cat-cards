@@ -18,7 +18,7 @@ class App extends Component {
 
   handleChange = () => {
     this.setState({ checked: !this.state.checked });
-    if (this.state.checked == true) {
+    if (this.state.checked === true) {
       this.getCats();
     }
   };
@@ -62,17 +62,18 @@ class App extends Component {
                   Cat Facts
                 </Typography>
               </Grid>
-
-              <Grid item xs={1} className="app-bar__switch-wrapper">
-                <Switch
-                  checked={checked}
-                  onChange={this.handleChange}
-                  color="primary"
-                />
-              </Grid>
             </Grid>
           </Toolbar>
         </AppBar>
+        <Grid container justify="center">
+          <Grid item>
+            <Switch
+              checked={checked}
+              onChange={this.handleChange}
+              color="primary"
+            />
+          </Grid>
+        </Grid>
         <CatTable
           checked={checked}
           cats={cats}
