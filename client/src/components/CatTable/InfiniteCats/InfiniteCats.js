@@ -6,7 +6,12 @@ import { Grid } from "@material-ui/core";
 
 import "../CatTable.css";
 
-const InfiniteCats = ({ getMoreCats, cats }) => {
+const InfiniteCats = ({
+  getMoreCats,
+  cats,
+  findIfFavorite,
+  handleFavoriteClick
+}) => {
   return (
     <InfiniteScroll
       pageStart={0}
@@ -25,10 +30,10 @@ const InfiniteCats = ({ getMoreCats, cats }) => {
         return (
           <Grid item xs={12} md={6} lg={4} key={cat._id}>
             <CatCard
-              fact={cat.text}
-              date={cat.updatedAt}
-              id={cat._id}
+              cat={cat}
               key={cat._id}
+              findIfFavorite={findIfFavorite}
+              handleFavoriteClick={handleFavoriteClick}
             />
           </Grid>
         );
